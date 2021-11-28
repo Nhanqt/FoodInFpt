@@ -9,5 +9,6 @@ namespace foodFptApi.Models
         public string Description { get; set; }
         public decimal price { get; set; }
         public string image { get; set; }
+        public decimal total { get; set; }
     }
 }
