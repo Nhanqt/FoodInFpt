@@ -1,5 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using foodFptApi.Data;
+using FoodInFpt.Dtos;
 using FoodInFpt.Models;
 using FoodInFpt.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -11,16 +15,28 @@ namespace FoodInFpt.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly DataContext _datacontext;
         public AccountController(IAccountRepository accountRepository)
         {
             _accountRepository = accountRepository;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Account>>> GetProducts()
+        [HttpPost]
+        public async Task<ActionResult> CreateAccount(AccountDto accountDto)
         {
-            var products = await _accountRepository.GetAll();
-            return Ok(products);
+            // Account account = new Account
+            // {
+
+            // }
+            // var products = await _accountRepository.Add();
+            return Ok();
+        }
+
+        [HttpGet("GetAll")]
+        public IEnumerable<Account> Get()
+        {
+
+            return _accountRepository.GetAll().ToList();
         }
     }
 }

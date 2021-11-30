@@ -1,7 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using foodFptApi.Data;
 using FoodInFpt.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System;
 
 namespace FoodInFpt.Repositories
 {
@@ -28,9 +32,24 @@ namespace FoodInFpt.Repositories
             throw new System.NotImplementedException();
         }
 
-        public Task<IEnumerable<Account>> GetAll()
+        public IEnumerable<Account> GetAll()
         {
-            throw new System.NotImplementedException();
+            var query = (from a in _context.Accounts
+                         join ar in _context.AccountRoles on a.AccountId equals ar.AccountId
+                         join r in _context.Roles on ar.RoleId equals r.RoleId
+                         select new Account
+                         {
+                             AccountId = a.AccountId,
+                             Username = a.Username,
+                             AccountRoles = a.AccountRoles,
+                             Phone = a.Phone,
+                             Email = a.Email,
+                             Password = a.Password,
+                             Age = a.Age,
+                             Fullname = a.Fullname,
+                             role = r.RoleName
+                         }).ToList();
+            return query;
         }
 
         public Task Update(Account account)

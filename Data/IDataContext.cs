@@ -11,5 +11,7 @@ namespace foodFptApi.Data
         DbSet<Food> Products { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         DbSet<Account> Accounts { get; set; }
+        DbSet<AccountRole> AccountRoles { get; set; }
+        DbSet<Role> Roles { get; set; }
     }
 }
