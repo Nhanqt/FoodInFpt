@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using foodFptApi.Models;
+using FoodInFpt.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace foodFptApi.Data
@@ -9,5 +10,6 @@ namespace foodFptApi.Data
     {
         DbSet<Food> Products { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        DbSet<Account> Accounts { get; set; }
     }
 }
