@@ -10,6 +10,6 @@ namespace FoodInFpt.Models
         [Required]
         public string RoleName { get; set; }
 
-        public IList<AccountRole> AccountRoles { get; set; }
+        public IList<Account> Accounts { get; set; }
     }
 }

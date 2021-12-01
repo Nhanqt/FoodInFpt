@@ -35,19 +35,17 @@ namespace FoodInFpt.Repositories
         public IEnumerable<Account> GetAll()
         {
             var query = (from a in _context.Accounts
-                         join ar in _context.AccountRoles on a.AccountId equals ar.AccountId
-                         join r in _context.Roles on ar.RoleId equals r.RoleId
+                         join r in _context.Roles on a.RoleId equals r.RoleId
                          select new Account
                          {
                              AccountId = a.AccountId,
                              Username = a.Username,
-                             AccountRoles = a.AccountRoles,
                              Phone = a.Phone,
                              Email = a.Email,
                              Password = a.Password,
                              Age = a.Age,
                              Fullname = a.Fullname,
-                             role = r.RoleName
+                             RoleName = r.RoleName
                          }).ToList();
             return query;
         }
